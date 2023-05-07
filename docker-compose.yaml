@@ -1,0 +1,22 @@
+services:
+  medexsepeti-api:
+    container_name: medexsepeti-api-service
+    build: .
+    ports:
+      - "8888:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - medexsepeti-mysql
+
+  medexsepeti-mysql:
+    image: mysql:5.7
+    container_name: medexsepeti-mysql-service
+    environment:
+      MYSQL_DATABASE: medexsepeti
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: 'zerC2asx1a'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
