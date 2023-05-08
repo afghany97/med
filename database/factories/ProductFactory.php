@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\enums\ProductTagsEnum;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +24,7 @@ class ProductFactory extends Factory
             'description' => fake()->sentence,
             'price' => fake()->randomNumber(4),
             'image' => fake()->imageUrl(word: $title),
+            'category_id' => fake()->randomElement(Category::pluck('id')->toArray()),
             'tag' => fake()->randomElement(array_column(ProductTagsEnum::cases(), 'value')),
             'customer_wishlist' => json_encode(fake()->randomElements(User::pluck('id')->toArray(), rand(1, 10))),
             'total_views' => fake()->randomNumber(3)
