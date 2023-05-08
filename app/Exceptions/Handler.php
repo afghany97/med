@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use App\enums\AppEnvironmentEnum;
+use App\Exceptions\Factories\ExceptionHandlerFactory;
+use App\Exceptions\Handlers\UnhandledExceptionHandler;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\App;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +30,19 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+        if ($handler = ExceptionHandlerFactory::getExceptionHandler($e)) {
+            return call_user_func($handler . '::handle', $request, $e);
+        }
+
+        //Display Laravel error page in local
+        if (App::environment(AppEnvironmentEnum::LOCAL->value)) {
+            return parent::render($request, $e);
+        }
+
+        return UnhandledExceptionHandler::handle($request, $e);
     }
 }
