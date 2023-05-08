@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Actions\Products\ProductsListAction;
 use App\enums\PaginationEnum;
-use App\Filters\Products\ProductsFilters;
+use App\Utilities\Products\ProductsUtilities;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ProductController
 {
-    public function list(Request $request, ProductsListAction $productsListAction, ProductsFilters $productsFilters): JsonResponse
+    public function list(Request $request, ProductsListAction $productsListAction, ProductsUtilities $productsFilters): JsonResponse
     {
         $products = $productsListAction->execute(
             $productsFilters,

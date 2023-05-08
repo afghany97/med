@@ -2,7 +2,7 @@
 
 namespace App\Actions\Products;
 
-use App\Filters\Products\ProductsFilters;
+use App\Utilities\Products\ProductsUtilities;
 use App\Repositories\Products\ProductsRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -15,7 +15,7 @@ class ProductsListAction
         $this->productsRepository = $productsRepository;
     }
 
-    public function execute(ProductsFilters $productsFilters, int $limit, int $page): LengthAwarePaginator
+    public function execute(ProductsUtilities $productsFilters, int $limit, int $page): LengthAwarePaginator
     {
         return $this->productsRepository->list($productsFilters, $limit, $page);
     }

@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Products;
 
-use App\Filters\Products\ProductsFilters;
+use App\Utilities\Products\ProductsUtilities;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ProductsRepositoryInterface
 {
-    public function list(ProductsFilters $productsFilters, int $limit, int $page): LengthAwarePaginator;
+    public function list(ProductsUtilities $productsFilters, int $limit, int $page): LengthAwarePaginator;
 }
