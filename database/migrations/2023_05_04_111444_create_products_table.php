@@ -17,6 +17,10 @@ return new class extends Migration {
             $table->string('description');
             $table->float('price');
             $table->string('image');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories');
             $table->enum('tag', array_column(ProductTagsEnum::cases(), 'value'));
             $table->json('customer_wishlist');
             $table->integer('total_views');
