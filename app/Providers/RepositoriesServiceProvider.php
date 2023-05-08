@@ -8,6 +8,8 @@ use App\Repositories\Brands\BrandsRepositoryInterface;
 use App\Repositories\Brands\MysqlBrandsRepository;
 use App\Repositories\Categories\CategoryRepositoryInterface;
 use App\Repositories\Categories\MysqlCategoriesRepository;
+use App\Repositories\Products\MysqlProductsRepository;
+use App\Repositories\Products\ProductsRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider
@@ -16,6 +18,7 @@ class RepositoriesServiceProvider extends ServiceProvider
         CategoryRepositoryInterface::class => MysqlCategoriesRepository::class,
         AdsRepositoryInterface::class => MysqlAdsRepository::class,
         BrandsRepositoryInterface::class => MysqlBrandsRepository::class,
+        ProductsRepositoryInterface::class => MysqlProductsRepository::class
     ];
 
     /**

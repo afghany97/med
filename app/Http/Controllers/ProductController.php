@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Brands\BrandsListAction;
+use App\Actions\Products\ProductsListAction;
 use App\enums\PaginationEnum;
+use App\Filters\Products\ProductsFilters;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class BrandController
+class ProductController
 {
-    public function list(Request $request, BrandsListAction $adsListAction): JsonResponse
+    public function list(Request $request, ProductsListAction $productsListAction, ProductsFilters $productsFilters): JsonResponse
     {
-        $brands = $adsListAction->execute(
+        $products = $productsListAction->execute(
+            $productsFilters,
             $request->get('limit', PaginationEnum::DEFAULT_LIMIT->value),
             $request->get('page', PaginationEnum::DEFAULT_PAGE->value)
         );
         $payload = [
-            "data" => $brands->items(),
+            "data" => $products->items(),
             "pagination" => [
-                "hasMorePages" => $brands->hasMorePages()
+                "hasMorePages" => $products->hasMorePages()
             ]
         ];
 
