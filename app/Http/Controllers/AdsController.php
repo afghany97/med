@@ -16,7 +16,7 @@ class AdsController
             $request->get('page', PaginationEnum::DEFAULT_PAGE->value)
         );
         $payload = [
-            "data" => $ads->items(),
+            "data" => array_column($ads->items(), 'image'),
             "pagination" => [
                 "hasMorePages" => $ads->hasMorePages()
             ]

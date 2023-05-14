@@ -6,15 +6,10 @@
     <title>Laravel</title>
     @vite('resources/css/app.css')
 <body>
-<div id="app">
+    <div id="app">
+        @vite('resources/js/app.js')
+    </div>
 
-{{--    <h1>abo reda</h1>--}}
-{{--    <Slider></Slider>--}}
-    <app></app>
-{{--    <example-component></example-component>--}}
-</div>
-
-@vite('resources/js/app.js')
 </body>
 
 </html>
